@@ -79,6 +79,7 @@ public class Main {
 				
 				System.out.println("Sto scrivendo.... [Libro " + (i+1) + "]\n");
 			}
+		fw.close();
 		} catch (Exception e) {
 			System.err.println("Impossibile scrivere sul file (" + FILEPATH + ") - " + e.getMessage());
 		}
