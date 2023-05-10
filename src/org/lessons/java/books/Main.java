@@ -26,7 +26,9 @@ public class Main {
 				
 			} catch (Exception e) {
 				System.err.println("Inserisci un numero.");
-				in.next();
+				//in.nextInt(); 
+				//in.next();
+				in.nextLine();
 			}
 		}
 		
@@ -73,7 +75,7 @@ public class Main {
 					
 					fw.write(books[i].toString() + "\n");
 				} else {
-					fw.write("Errore nell'inserimento del libro [" + books.length+1 + "]\n");
+					fw.write("Errore nell'inserimento del libro [" + (i+1) + "]\n");
 				}
 				
 				
