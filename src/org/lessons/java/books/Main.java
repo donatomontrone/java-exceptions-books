@@ -12,9 +12,24 @@ public class Main {
 		
 		Scanner in = new Scanner(System.in);
 		
-		System.out.print("Inserisci il numero di libri che intendi aggiungere alla lista: ");
+		int booksNum = 0;
 		
-		int booksNum = in.nextInt();
+		boolean isNum = false;
+		
+		while (!isNum) {
+			
+			System.out.print("Inserisci il numero di libri che intendi aggiungere alla lista: ");
+			try {
+				
+				booksNum = in.nextInt();
+				isNum = true;
+				
+			} catch (Exception e) {
+				System.err.println("Inserisci un numero.");
+				in.next();
+			}
+		}
+		
 		
 		in.nextLine();
 		
@@ -54,9 +69,15 @@ public class Main {
 		
 		try (FileWriter fw = new FileWriter(FILEPATH)) {
 			for (int i = 0; i < books.length; i++) {
-				fw.write(books[i].toString() + "\n");
+				if (books[i] != null) {
+					
+					fw.write(books[i].toString() + "\n");
+				} else {
+					fw.write("Errore nell'inserimento del libro [" + books.length+1 + "]\n");
+				}
 				
-				System.out.println("Sto scrivendo.... [Libro " + i+1 + "]\n");
+				
+				System.out.println("Sto scrivendo.... [Libro " + (i+1) + "]\n");
 			}
 		} catch (Exception e) {
 			System.err.println("Impossibile scrivere sul file (" + FILEPATH + ") - " + e.getMessage());
