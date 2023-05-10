@@ -42,8 +42,7 @@ public class Main {
 		System.out.println("Adesso aggiugniamo i libri... \n");
 
 		for (int i = 0; i < books.length; i++) {
-			try {
-				
+			
 				System.out.println("Inserisci il titolo del libro");
 				String title = in.nextLine();
 				
@@ -58,11 +57,14 @@ public class Main {
 				System.out.println("Inserisci la casa editrice del libro");
 				String publisher = in.nextLine();
 				
+				try {
+					
 					books[i] = new Book(title, pages, author, publisher);					
 				
-			} catch (Exception e) {
-				System.err.println("Impossibile aggiungere il libro - " + e.getMessage());
-			}
+				} catch (Exception e) {
+					i--;
+					System.err.println("Impossibile aggiungere il libro - " + e.getMessage());
+				}
 		}
 		in.close();
 		
@@ -71,13 +73,9 @@ public class Main {
 		
 		try (FileWriter fw = new FileWriter(FILEPATH)) {
 			for (int i = 0; i < books.length; i++) {
-				if (books[i] != null) {
-					
+				if (books[i] != null) {		
 					fw.write(books[i].toString() + "\n");
-				} else {
-					fw.write("Errore nell'inserimento del libro [" + (i+1) + "]\n");
-				}
-				
+				} 
 				
 				System.out.println("Sto scrivendo.... [Libro " + (i+1) + "]\n");
 			}
